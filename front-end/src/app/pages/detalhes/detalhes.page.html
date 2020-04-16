@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start"> -->
+    <ion-back-button slot="start"></ion-back-button>
+    <!-- </ion-buttons> -->
+    <ion-title>Detalhes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides pager="true">
+    <ion-slide *ngFor="let foto of carro.fotos">
+      <img src={{foto}} />
+    </ion-slide>
+  </ion-slides>
+
+  <ion-item-group>
+    <ion-item-divider color="light">
+      <ion-icon name="car-outline"></ion-icon>
+      VEÍCULO
+    </ion-item-divider>
+    <ion-item>{{ carro.nome }}</ion-item>
+    <ion-item>R$ {{ carro.preco }}</ion-item>
+  </ion-item-group>
+
+  <ion-item-group>
+    <ion-item-divider color="light">
+      <ion-icon name="options-outline"></ion-icon>
+      ACESSÓRIOS
+    </ion-item-divider>
+    <ion-item *ngFor="let acessorio of acessorios">
+      <ion-label>
+        <h2>{{ acessorio.nome }}</h2>
+        <h2>R$ {{ acessorio.preco }}</h2>
+      </ion-label>
+      <ion-toggle #toggle color="secondary" (ionChange)="atualizarTotal(toggle.checked, acessorio)">
+      </ion-toggle>
+    </ion-item>
+  </ion-item-group>
+
+  <ion-item-divider color="light"><span item-right>TOTAL: {{ precoTotal }}</span></ion-item-divider>
+
+  <!-- <ion-button expand="block">Avançar</ion-button> -->
+  <ion-fab vertical="top" horizontal="end" slot="fixed" edge>
+    <ion-fab-button>
+      <ion-icon name="arrow-redo-circle-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

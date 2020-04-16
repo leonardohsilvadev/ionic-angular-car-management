@@ -1,0 +1,16 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blanka
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card *ngFor="let carro of carros" (click)="selecionarCarro(carro)">
+    <ion-card-header>
+      <ion-card-title>{{ carro.nome }}</ion-card-title>
+      <ion-card-subtitle>R$ {{ carro.preco }}</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+</ion-content>
