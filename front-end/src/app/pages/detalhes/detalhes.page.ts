@@ -1,7 +1,7 @@
 import { Acessorio } from './../../../models/acessorio';
 import { Carro } from './../../../models/carro';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-detalhes',
@@ -17,10 +17,10 @@ export class DetalhesPage implements OnInit {
   ];
   private _precoTotal: number;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
+    this.activatedRoute.queryParams.subscribe(params => {
       if (params && params.carro) {
         this.carro = JSON.parse(params.carro);
       }
@@ -30,6 +30,16 @@ export class DetalhesPage implements OnInit {
 
   atualizarTotal(ativado: boolean, acessorio: Acessorio) {
     ativado ? this._precoTotal += acessorio.preco : this._precoTotal -= acessorio.preco;
+  }
+
+  continuarCadastro() {
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        carro: JSON.stringify(this.carro),
+        precoTotal: JSON.stringify(this._precoTotal)
+      }
+    };
+    this.router.navigate(['cadastro'], navigationExtras);
   }
 
   get precoTotal() {

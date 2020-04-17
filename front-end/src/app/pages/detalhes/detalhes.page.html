@@ -1,8 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <!-- <ion-buttons slot="start"> -->
     <ion-back-button slot="start"></ion-back-button>
-    <!-- </ion-buttons> -->
     <ion-title>Detalhes</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -40,9 +38,8 @@
 
   <ion-item-divider color="light"><span item-right>TOTAL: {{ precoTotal }}</span></ion-item-divider>
 
-  <!-- <ion-button expand="block">Avançar</ion-button> -->
   <ion-fab vertical="top" horizontal="end" slot="fixed" edge>
-    <ion-fab-button>
+    <ion-fab-button size="small" (click)="continuarCadastro()">
       <ion-icon name="arrow-redo-circle-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
