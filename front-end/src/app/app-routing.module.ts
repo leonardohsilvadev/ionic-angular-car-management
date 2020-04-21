@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'lista-agendamentos', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule) },
   {
     path: 'detalhes',
@@ -10,7 +10,11 @@ const routes: Routes = [
   },
   {
     path: 'cadastro',
-    loadChildren: () => import('./pages/cadastro/cadastro.module').then( m => m.CadastroPageModule)
+    loadChildren: () => import('./pages/cadastro/cadastro.module').then(m => m.CadastroPageModule)
+  },
+  {
+    path: 'lista-agendamentos',
+    loadChildren: () => import('./pages/lista-agendamentos/lista-agendamentos.module').then(m => m.ListaAgendamentosPageModule)
   },
 ];
 

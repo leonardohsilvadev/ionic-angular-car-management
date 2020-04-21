@@ -1,7 +1,7 @@
+import { Agendamento } from './../../../models/agendamento';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { from } from 'rxjs';
-import { Agendamento } from 'src/models/agendamento';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +25,16 @@ export class AgendamentoDaoService {
     const key = this.gerarKey(agendamento);
     const duplicado = this.storage.get(key).then(value => value ? true : false);
     return from(duplicado);
+  }
+
+  listarTodos() {
+    let agendamentos: Agendamento[] = [];
+
+    let promise = this.storage.forEach((agendamento: Agendamento) => {
+      agendamentos.push(agendamento);
+    })
+      .then(() => agendamentos);
+
+    return from(promise);
   }
 }

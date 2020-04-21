@@ -61,7 +61,7 @@ export class CadastroPage implements OnInit {
           throw new Error('Agendamento existente!');
         }
 
-        return this.agendamentosService.agendar(agendamento)
+        return this.agendamentosService.agendar(agendamento);
       }))
       .pipe(mergeMap(value => {
         const observable = this.agendamentoDaoService.salvar(agendamento);
