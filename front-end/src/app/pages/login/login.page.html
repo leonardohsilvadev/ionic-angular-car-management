@@ -1,0 +1,26 @@
+<ion-content scroll="false">
+  <div class="splash-bg"></div>
+  <div class="splash-info">
+    <div class="splash-logo"></div>
+    <div class="splash-intro">
+      IONICAR
+    </div>
+  </div>
+  <div padding>
+
+    <form (ngSubmit)="login()">
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input [(ngModel)]="email" name="email" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Senha</ion-label>
+        <ion-input [(ngModel)]="senha" name="senha" type="password"></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" type="submit" class="login">ENTRAR</ion-button>
+    </form>
+
+  </div>
+</ion-content>
