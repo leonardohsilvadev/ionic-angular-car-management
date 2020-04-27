@@ -1,6 +1,6 @@
 <ion-app>
   <ion-split-pane contentId="main">
-    <ion-menu side="start" contentId="main">
+    <ion-menu side="start" contentId="main" *ngIf="usuarioLogado">
       <ion-header>
         <ion-toolbar color="primary">
           <ion-title>Menu</ion-title>
@@ -10,12 +10,12 @@
         <ion-item id="cabecalho-menu" class="cabecalho-menu">
           <div>
             <ion-avatar slot="start">
-              <img src="assets/img/avatar-profile.jpg" />
+              <img src='../assets/img/avatar-padrao.jpg' />
             </ion-avatar>
           </div>
           <div style="flex-direction: column;">
-            <h3>Nome</h3>
-            <p>Email</p>
+            <h3>{{ usuarioLogado.nome }}</h3>
+            <p>{{ usuarioLogado.email }}</p>
           </div>
         </ion-item>
 

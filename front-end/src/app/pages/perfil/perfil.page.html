@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item lines="none">
+    <div class="avatar-wrapper">
+      <ion-avatar>
+        <img src="../../../assets/img/avatar-padrao.jpg" />
+      </ion-avatar>
+      <!-- </ion-item> -->
+
+      <!-- <ion-item> -->
+      <ion-button shape="round" class="btn-tirar-foto" slot="icon-only">
+        <ion-icon name="camera-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-item>
+
+  <ion-card>
+    <ion-item>
+      <ion-icon name="person-outline"></ion-icon>
+      {{ usuarioLogado.nome }}
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="calendar-outline"></ion-icon>
+      <p>{{ usuarioLogado.dataNascimento }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="mail-outline"></ion-icon>
+      <p>{{ usuarioLogado.email }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="call-outline"></ion-icon>
+      <p>{{ usuarioLogado.telefone }}</p>
+    </ion-item>
+  </ion-card>
+</ion-content>

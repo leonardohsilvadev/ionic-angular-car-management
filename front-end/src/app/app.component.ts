@@ -1,3 +1,4 @@
+import { LoginService } from './services/login/login.service';
 import { Router, RouterEvent } from '@angular/router';
 import { Component } from '@angular/core';
 
@@ -12,6 +13,11 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class AppComponent {
   pages = [
+    {
+      title: 'Perfil',
+      url: 'perfil',
+      icon: 'person-circle-outline'
+    },
     {
       title: 'Carros',
       url: 'home',
@@ -31,7 +37,8 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private menu: MenuController,
-    private router: Router
+    private router: Router,
+    private loginService: LoginService
   ) {
     this.initializeApp();
     this.router.events.subscribe((event: RouterEvent) => {
@@ -49,6 +56,10 @@ export class AppComponent {
   openMenu() {
     this.menu.enable(true, 'menu');
     this.menu.open('menu');
+  }
+
+  get usuarioLogado() {
+    return this.loginService.getUsuarioLogado();
   }
 
 }
