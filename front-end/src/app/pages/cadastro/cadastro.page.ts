@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Agendamento } from 'src/models/agendamento';
 import { mergeMap } from 'rxjs/operators';
+import { Vibration } from '@ionic-native/vibration/ngx';
+import { DatePicker } from '@ionic-native/date-picker/ngx';
 
 @Component({
   selector: 'app-cadastro',
@@ -27,6 +29,8 @@ export class CadastroPage implements OnInit {
     private agendamentosService: AgendamentosService,
     private alertController: AlertController,
     private agendamentoDaoService: AgendamentoDaoService,
+    private vibration: Vibration,
+    private datePicker: DatePicker
   ) { }
 
   ngOnInit() {
@@ -38,8 +42,17 @@ export class CadastroPage implements OnInit {
     })
   }
 
+  selecionarData() {
+    this.datePicker.show({
+      date: new Date(),
+      mode: 'date'
+    })
+      .then(data => this.data = data.toISOString())
+  }
+
   agendar() {
     if (!this.nome || !this.endereco || !this.email) {
+      this.vibration.vibrate(500);
       this.handleAlert('Erro', 'Preencha todos os campos');
       return;
     }

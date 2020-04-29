@@ -1,3 +1,4 @@
+import { ApiService } from './../api-service/api.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, tap } from 'rxjs/operators';
@@ -9,10 +10,14 @@ import { Agendamento } from 'src/models/agendamento';
 })
 export class AgendamentosService {
 
-  constructor(private httpClient: HttpClient) { }
+  _url: string;
+
+  constructor(private httpClient: HttpClient, private _apiService: ApiService) {
+    this._url = this._apiService.url;
+  }
 
   agendar(agendamento: Agendamento) {
-    return this.httpClient.post('http://localhost:8080/api/agendamento/agenda', agendamento)
+    return this.httpClient.post(this._url + 'api/agendamento/agenda', agendamento)
       .pipe(tap(() => agendamento.enviado = true))
       .pipe(catchError(() => of(new Error('Agendamento não realizado'))))
   }

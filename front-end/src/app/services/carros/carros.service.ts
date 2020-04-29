@@ -1,3 +1,4 @@
+import { ApiService } from './../api-service/api.service';
 import { Carro } from '../../../models/carro';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -7,9 +8,13 @@ import { Injectable } from '@angular/core';
 })
 export class CarrosService {
 
-  constructor(private httpClient: HttpClient) { }
+  _url: string;
+
+  constructor(private httpClient: HttpClient, private _apiService: ApiService) {
+    this._url = this._apiService.url;
+  }
 
   lista() {
-    return this.httpClient.get<Carro[]>('http://localhost:8080/api/carro/listaTodos');
+    return this.httpClient.get<Carro[]>(this._url + 'api/carro/listaTodos');
   }
 }
