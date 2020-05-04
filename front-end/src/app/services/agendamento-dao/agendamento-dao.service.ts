@@ -21,6 +21,11 @@ export class AgendamentoDaoService {
     // ou await this.storage.set(key, agendamento);
   }
 
+  recuperar(agendamentoId) {
+    const promise = this.storage.get(agendamentoId);
+    return from(promise);
+  }
+
   duplicado(agendamento: Agendamento) {
     const key = this.gerarKey(agendamento);
     const duplicado = this.storage.get(key).then(value => value ? true : false);

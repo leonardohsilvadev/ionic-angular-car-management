@@ -7,4 +7,5 @@ export interface Agendamento {
     precoTotal: number;
     confirmado: boolean;
     enviado: boolean;
+    visualizado: boolean;
 }

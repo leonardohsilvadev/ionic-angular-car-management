@@ -65,7 +65,8 @@ export class CadastroPage implements OnInit {
       modeloCarro: this.carro.nome,
       precoTotal: this.precoTotal,
       confirmado: false,
-      enviado: false
+      enviado: false,
+      visualizado: false
     };
 
     this.agendamentoDaoService.duplicado(agendamento)

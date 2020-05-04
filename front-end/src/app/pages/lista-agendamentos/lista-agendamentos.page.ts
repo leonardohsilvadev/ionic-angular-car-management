@@ -28,6 +28,18 @@ export class ListaAgendamentosPage implements OnInit {
     console.log('agendamentos:', this.agendamentos);
   }
 
+  ionViewDidEnter() {
+    setTimeout(() => this.atualizarAgendamentos(), 5000);
+  }
+
+  atualizarAgendamentos() {
+    this.agendamentos.filter((agendamento: Agendamento) => agendamento.confirmado)
+      .forEach((agendamento: Agendamento) => {
+        agendamento.visualizado = true;
+        this.agendamentoDaoService.salvar(agendamento);
+      })
+  }
+
   reenviar(agendamento: Agendamento) {
     return this.agendamentosService.agendar(agendamento)
       .pipe(mergeMap(value => {

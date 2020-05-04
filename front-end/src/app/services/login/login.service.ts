@@ -24,4 +24,14 @@ export class LoginService {
   getUsuarioLogado() {
     return this._usuarioLogado;
   }
+
+  salvarAvatar(avatar) {
+    localStorage.setItem('avatar', avatar);
+  }
+
+  obterAvatar() {
+    return localStorage.getItem('avatar') ?
+      localStorage.getItem('avatar') :
+      '../../../assets/img/avatar-padrao.jpg';
+  }
 }

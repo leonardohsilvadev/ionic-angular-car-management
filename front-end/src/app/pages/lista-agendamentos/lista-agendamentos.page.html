@@ -10,8 +10,9 @@
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let agendamento of agendamentos" [class.falha]="!agendamento.enviado">
-      {{ agendamento.nomeCliente }} - {{ agendamento.modeloCarro }}
-
+      {{ agendamento.nomeCliente }} - {{ agendamento.data | date: 'dd/MM/yyyy'}}
+      <p>{{ agendamento.modeloCarro }} - R$ {{ agendamento.precoTotal }}</p>
+      <ion-badge slot="end" *ngIf="agendamento.confirmado && !agendamento.visualizado">Confirmado!</ion-badge>
       <ion-button *ngIf="!agendamento.enviado" slot="end" fill="clear" (click)="reenviar(agendamento)">
         <ion-icon name="refresh-outline"></ion-icon>
       </ion-button>
