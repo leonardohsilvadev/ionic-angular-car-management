@@ -14,8 +14,9 @@ npm install (inside back-end and front-end folders)
 ## Usage
 
 ```sh
-1- run npm start on back-end folder
-2- run ionic serve (or ionic serve --lab if you want a more efficient way to test on multiple screen sizes and platform types)
+1- run npm start <your-ipv4> on back-end folder
+2- inside front-end folder, change the ip inside src/app/services/api-service/api-service.ts and inside your generated resources/android/xml/network_security_config.xml to your ipv4 address.
+3- run ionic serve (or ionic serve --lab if you want a more efficient way to test on multiple screen sizes and platform types)
 ```
 
 ## Author
