@@ -40,7 +40,7 @@ module.exports = app => {
         counter++;
 
         const agendamento = req.body;
-        
+
         if (counter % 3 != 0) {
             console.log('Agendamento recebido: ' + JSON.stringify(agendamento));
             setTimeout(() => enviaNotificacao(agendamento), 5000);
@@ -54,10 +54,10 @@ module.exports = app => {
     app.post('/api/login', (req, res) => {
         let usuarioLogin = req.body;
 
-        if (usuarioLogin.email == usuario.email 
+        if (usuarioLogin.email == usuario.email
             && usuarioLogin.senha == usuario.senha) {
 
-                res.json(usuario);
+            res.json(usuario);
         } else {
             res.status(403).end();
         }
@@ -66,19 +66,19 @@ module.exports = app => {
     function enviaNotificacao(agendamento) {
         const agendamentoId = agendamento.emailCliente + agendamento.data.substr(0, 10);
 
-        const message = { 
-            app_id: "e53f5d24-40e4-458f-99db-5230cf3f8bc0",
-            headings: {"en": "Aluracar"},
-            contents: {"en": "Agendamento confirmado!"},
-            data: {"agendamento-id": agendamentoId},
+        const message = {
+            app_id: "c16ffa82-4d96-40ca-916a-862987203ebe",
+            headings: { "en": "Ionicar" },
+            contents: { "en": "Agendamento confirmado!" },
+            data: { "agendamento-id": agendamentoId },
             included_segments: ["All"]
         };
 
         const headers = {
             "Content-Type": "application/json; charset=utf-8",
-            "Authorization": "Basic MGJlOGMxZGEtMDY3Ni00NWY3LWI0ZjYtMjRjMjYzMzhmZmEz"
+            "Authorization": "Basic OWY5MzY5MzgtYTJmNC00NTQ4LTkzMmQtZTY1ZWM5NGY2NTFj"
         };
-        
+
         const options = {
             host: "onesignal.com",
             port: 443,
@@ -86,20 +86,20 @@ module.exports = app => {
             method: "POST",
             headers: headers
         };
-        
-        const req = https.request(options, function(res) {  
-          res.on('data', function(data) {
-            // console.log("Response:");
-            // console.log(JSON.parse(data));
-          });
+
+        const req = https.request(options, function (res) {
+            res.on('data', function (data) {
+                // console.log("Response:");
+                // console.log(JSON.parse(data));
+            });
         });
-        
-        req.on('error', function(e) {
-          console.log("ERROR:");
-          console.log(e);
+
+        req.on('error', function (e) {
+            console.log("ERROR:");
+            console.log(e);
         });
-        
+
         req.write(JSON.stringify(message));
         req.end();
-      }
+    }
 };
